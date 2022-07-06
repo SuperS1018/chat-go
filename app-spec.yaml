@@ -37,6 +37,6 @@ services:
   instance_size_slug: professional-xs
   name: chat-go
   routes:
-  - path: /
+  - path: /public
   run_command: npm start
   source_dir: web
