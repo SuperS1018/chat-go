@@ -9,24 +9,34 @@ databases:
   version: "6"
 functions:
 - envs:
-  - key: DATABASE_URL
+  - key: REDIS_URL
     scope: RUN_AND_BUILD_TIME
-    value: 'rediss://default:AVNS_oJAEpbLx0tT_L6_lNuC@db-redis-sfo3-04622-do-user-9818662-0.b.db.ondigitalocean.com:25061'
+    value: db-redis-sfo3-04622-do-user-9818662-0.b.db.ondigitalocean.com:25061
+  - key: REDIS_PASSWORD
+    scope: RUN_AND_BUILD_TIME
+    value: AVNS_oJAEpbLx0tT_L6_lNuC
   github:
     branch: master
     deploy_on_push: true
     repo: SuperS1018/chat-go
-  name: chat
+  name: chat-go2
   routes:
-  - path: /api
+  - path: /chat-go2
   source_dir: /
-name: chat-go
+name: dolphin-app
 region: nyc
 services:
 - build_command: npm run build
   environment_slug: node-js
   github:
-    branch: main
+    branch: master
     deploy_on_push: true
     repo: SuperS1018/chat-go
-    name: chat-go
+  http_port: 8080
+  instance_count: 2
+  instance_size_slug: professional-xs
+  name: chat-go
+  routes:
+  - path: /
+  run_command: npm start
+  source_dir: web
