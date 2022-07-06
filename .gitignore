@@ -1,0 +1,8 @@
+.nimbella/
+.include
+build/
+node_modules/
+package_lock.json
+.DS_Store
+.env
+.idea/

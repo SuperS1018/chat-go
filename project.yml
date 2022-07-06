@@ -1,0 +1,7 @@
+packages:
+  - name: chat
+    parameters:
+      userKey: userlist
+      messageKey: messagelist
+      redisURL: ${REDIS_URL}
+      redisPassword: ${REDIS_PASSWORD}
