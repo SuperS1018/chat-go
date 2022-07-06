@@ -1,14 +1,40 @@
 alerts:
-  - rule: DEPLOYMENT_FAILED
-  - rule: DOMAIN_FAILED
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+databases:
+- cluster_name: functions-redis
+  engine: REDIS
+  name: functions-redis
+  production: true
+  version: "6"
 functions:
-  - github:
-      branch: master
-      deploy_on_push: true
-      repo: SuperS1018/chat-go
-    name: go-app
-    routes:
-      - path: /
-    source_dir: /
-name: go-chat
+- envs:
+  - key: DATABASE_URL
+    scope: RUN_AND_BUILD_TIME
+    value: 'rediss://default:AVNS_oJAEpbLx0tT_L6_lNuC@db-redis-sfo3-04622-do-user-9818662-0.b.db.ondigitalocean.com:25061'
+  github:
+    branch: master
+    deploy_on_push: true
+    repo: SuperS1018/chat-go
+  name: chat
+  routes:
+  - path: /api
+  source_dir: /
+name: chat-go
 region: blr
+static_sites:
+- build_command: npm run build
+  environment_slug: html
+  envs:
+  - key: FUNCTION_API_URL
+    scope: BUILD_TIME
+    value: ${calculator-api.PUBLIC_URL}
+  github:
+    branch: master
+    deploy_on_push: true
+    repo: SuperS1018/chat-go
+  name: web-app
+  output_dir: dist
+  routes:
+  - path: /
+  source_dir: /public/assets/
