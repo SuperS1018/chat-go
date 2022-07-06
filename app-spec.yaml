@@ -2,9 +2,9 @@ alerts:
 - rule: DEPLOYMENT_FAILED
 - rule: DOMAIN_FAILED
 databases:
-- cluster_name: functions-redis
+- cluster_name: db-redis-sfo3-04622
   engine: REDIS
-  name: functions-redis
+  name: db-redis-sfo3-04622
   production: true
   version: "6"
 functions:
@@ -21,20 +21,12 @@ functions:
   - path: /api
   source_dir: /
 name: chat-go
-region: blr
-static_sites:
+region: nyc
+services:
 - build_command: npm run build
-  environment_slug: html
-  envs:
-  - key: FUNCTION_API_URL
-    scope: BUILD_TIME
-    value: ${calculator-api.PUBLIC_URL}
+  environment_slug: node-js
   github:
-    branch: master
+    branch: main
     deploy_on_push: true
     repo: SuperS1018/chat-go
-  name: web-app
-  output_dir: dist
-  routes:
-  - path: /
-  source_dir: /public/assets/
+    name: chat-go
