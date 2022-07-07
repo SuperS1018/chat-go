@@ -1,4 +1,4 @@
-const uri = 'https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-744054ea-e270-40d0-8e34-8b58c972a262/chat/'
+const uri = '/chat/'
 
 export const fetchUserlist = () => {
   return fetch(uri + 'getUserList.json')
