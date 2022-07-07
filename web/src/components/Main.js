@@ -15,7 +15,7 @@ const Main = () => {
 
     useEffect(() => {
         getMessageList();
-        let timeout = setTimeout(getMessageList(), 2000);
+        let timeout = setTimeout(getMessageList, 2000);
         return () => {
             clearTimeout(timeout);
         }
