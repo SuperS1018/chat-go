@@ -1,5 +1,11 @@
 const uri = '/chat-go/chat/'
 
+export const fetchUserlist = () => {
+  return fetch(uri + 'getUserList.json')
+    .then(handleResponse)
+    .then(data => data);
+};
+
 export const createUsername = (username) => {
   return fetch(uri + 'createUser.json', {
     method: 'POST',
