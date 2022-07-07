@@ -1,4 +1,4 @@
-const uri = '/chat/'
+const uri = '/chat-go2/chat/'
 
 export const fetchUserlist = () => {
   return fetch(uri + 'getUserList.json')
