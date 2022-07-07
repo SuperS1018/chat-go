@@ -19,9 +19,9 @@ functions:
     branch: master
     deploy_on_push: true
     repo: SuperS1018/chat-go
-  name: chat-go2
+  name: chat-go
   routes:
-  - path: /chat-go2
+  - path: /chat-go
   source_dir: /
 name: dolphin-app
 region: nyc
@@ -35,7 +35,7 @@ services:
   http_port: 8080
   instance_count: 2
   instance_size_slug: professional-xs
-  name: chat-go
+  name: chat-html
   routes:
   - path: /
   run_command: yarn start

@@ -5,7 +5,6 @@ import (
     "crypto/tls"
     "encoding/json"
     "sort"
-    "fmt"
 )
 
 func Main(args map[string]interface{}) map[string]interface{} {
@@ -14,6 +13,7 @@ func Main(args map[string]interface{}) map[string]interface{} {
     redisURL := args["redisURL"].(string)
     redisPassword := args["redisPassword"].(string)
 
+    // connection
     client := redis.NewClient(&redis.Options{
         TLSConfig: &tls.Config{
             MinVersion: tls.VersionTLS12,
@@ -23,41 +23,41 @@ func Main(args map[string]interface{}) map[string]interface{} {
         DB: 0,
     })
 
-    pong, err := client.Ping().Result()
+    _, err := client.Ping().Result()
     if err != nil {
         panic(err)
     }
-    fmt.Println("pong", pong)
 
+    // get user list
     len, err := client.LLen(messageKey).Result()
     if err != nil {
         panic(err)
     }
-    fmt.Println("len", len)
 
-    msgs, err := client.LRange(messageKey, 0, (len - 1)).Result()
+    messageList, err := client.LRange(messageKey, 0, (len - 1)).Result()
     if err != nil {
         panic(err)
     }
-    fmt.Println("messages", msgs)
 
+    // parse json
     type Message struct {
         Username string
         Message string
         Timestamp int64
     }
 
-    var newMsgs []Message
+    var newMessageList []Message
     var message Message
-    for _, msg := range msgs {
+    for _, msg := range messageList {
         json.Unmarshal([]byte(msg), &message)
-        newMsgs = append(newMsgs, message)
+        newMessageList = append(newMessageList, message)
     }
 
-    fmt.Println("m", newMsgs)
-    sort.Slice(newMsgs[:], func(i, j int) bool {
-        return newMsgs[i].Timestamp < newMsgs[j].Timestamp
+    // sort list
+    sort.Slice(newMessageList[:], func(i, j int) bool {
+        return newMessageList[i].Timestamp < newMessageList[j].Timestamp
     })
-    response["body"] = newMsgs
+    
+    response["body"] = newMessageList
     return response
 }

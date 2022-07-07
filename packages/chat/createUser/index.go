@@ -3,7 +3,6 @@ package main
 import (
     "github.com/go-redis/redis"
     "crypto/tls"
-    "fmt"
 )
 
 func Main(args map[string]interface{}) map[string]interface{} {
@@ -19,6 +18,7 @@ func Main(args map[string]interface{}) map[string]interface{} {
         return response
     }
 
+    // connection
     client := redis.NewClient(&redis.Options{
         TLSConfig: &tls.Config{
             MinVersion: tls.VersionTLS12,
@@ -28,23 +28,21 @@ func Main(args map[string]interface{}) map[string]interface{} {
         DB: 0,
     })
 
-    pong, err := client.Ping().Result()
+    _, err := client.Ping().Result()
     if err != nil {
         panic(err)
     }
-    fmt.Println("pong", pong)
 
+    // existing check
     len, err := client.LLen(userKey).Result()
     if err != nil {
         panic(err)
     }
-    fmt.Println("len", len)
 
     userList, err := client.LRange(userKey, 0, (len - 1)).Result()
     if err != nil {
         panic(err)
     }
-    fmt.Println("userList", userList)
 
     for _, user := range userList {
         if user == username {
@@ -54,6 +52,7 @@ func Main(args map[string]interface{}) map[string]interface{} {
         }
     }
 
+    // add new user
     err = client.LPush(userKey, username).Err()
     if err != nil {
         panic(err)
