@@ -5,7 +5,7 @@
 .sidebar-wrap .nav-sidebar li.nav-item.active span:nth-of-type(2) { color: #00d7d2; }
 .sidebar-wrap .person{ position: fixed; bottom: 0; left: 0; text-align: center; }
 .sidebar-wrap .person span{ background-color: #031b4d; width: 100%; display: inline-block; padding-top: 20px; padding-bottom: 20px; }
-.sidebar-wrap .del-btn{ margin-top: 12px; cursor: pointer; opacity: 0; transition: opacity .3s ease-in-out; }
+.sidebar-wrap .del-btn{ margin-top: 7px; cursor: pointer; opacity: 0; transition: opacity .3s ease-in-out; }
 .sidebar-wrap .nav-item:hover .del-btn{ opacity: 1; }
 
 @media only screen and (max-width: 768px) {
