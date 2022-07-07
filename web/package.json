@@ -9,11 +9,12 @@
     "react-dom": "^16.8.3",
     "react-emojione": "^5.0.1",
     "react-scripts": "^3.0.0",
+    "serve": "^13.0.4",
     "typescript": "^3.3.3333"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "serve -s _static -l tcp://0,0,0,0:$PORT -n",
+    "build": "rm -r _static 2>/dev/null; react-scripts build && mv build _static",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
