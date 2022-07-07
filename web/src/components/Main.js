@@ -15,7 +15,7 @@ const Main = () => {
 
     useEffect(() => {
         getMessageList();
-        let interval = setInterval(getMessageList, 2000);
+        let interval = setInterval(getMessageList, 5000);
         return () => {
             clearInterval(interval);
         }
