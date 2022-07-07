@@ -14,7 +14,11 @@ const Main = () => {
     }
 
     useEffect(() => {
-        getMessageList()
+        getMessageList();
+        let timeout = setTimeout(getMessageList(), 2000);
+        return () => {
+            clearTimeout(timeout);
+        }
     }, [])
 
     const handleSubmit = (message, cb) => {
