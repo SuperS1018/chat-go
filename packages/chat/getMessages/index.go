@@ -2,9 +2,9 @@ package main
 
 import (
     "github.com/go-redis/redis"
-    "crypto/tls"
-    "encoding/json"
-    "sort"
+    // "crypto/tls"
+    // "encoding/json"
+    // "sort"
     "fmt"
 )
 
@@ -13,6 +13,10 @@ func Main(args map[string]interface{}) map[string]interface{} {
     messageKey := args["messageKey"].(string)
     redisURL := args["redisURL"].(string)
     redisPassword := args["redisPassword"].(string)
+
+    fmt.Println("messageKey", messageKey)
+    fmt.Println("redisURL", redisURL)
+    fmt.Println("redisPassword", redisPassword)
 
     // connection
     client := redis.NewClient(&redis.Options{
@@ -31,6 +35,7 @@ func Main(args map[string]interface{}) map[string]interface{} {
 
     fmt.Println("pong", pong)
 
+    /*
     // get user list
     len, err := client.LLen(messageKey).Result()
     if err != nil {
@@ -62,7 +67,8 @@ func Main(args map[string]interface{}) map[string]interface{} {
     sort.Slice(newMessageList[:], func(i, j int) bool {
         return newMessageList[i].Timestamp < newMessageList[j].Timestamp
     })
+    */
     
-    response["body"] = newMessageList
+    response["body"] = messageKey
     return response
 }
