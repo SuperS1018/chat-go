@@ -15,10 +15,10 @@ const Main = () => {
 
     useEffect(() => {
         getMessageList();
-        let interval = setInterval(getMessageList, 5000);
-        return () => {
-            clearInterval(interval);
-        }
+        // let interval = setInterval(getMessageList, 5000);
+        // return () => {
+        //     clearInterval(interval);
+        // }
     }, [])
 
     const handleSubmit = (message, cb) => {

@@ -40,30 +40,6 @@ export const submitMessage = (data) => {
         .then(data => data)
 };
 
-// export const delMessage = (timestamp) => {
-//   return {
-//     type: DEL_MESSAGE,
-//     timestamp
-//   }
-// };
-//
-// export const removeMessage = (data) => {
-//   return dispatch => {
-//     return fetch(uri + 'delMessage.json', {
-//       method: 'POST',
-//       body: JSON.stringify({ item: data }),
-//       headers: {
-//         "Content-Type": "application/json"
-//       }
-//     }).then(handleResponse)
-//         .then(res => {
-//           if(res.returnCode === 0) {
-//             dispatch(delMessage(res.timestamp))
-//           }
-//         });
-//   }
-// };
-
 export const fetchMessages = () => {
   return fetch(uri + 'getMessages.json')
       .then(handleResponse)

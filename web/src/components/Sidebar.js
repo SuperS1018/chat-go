@@ -18,10 +18,10 @@ const Sidebar = ({ show }) => {
 
     useEffect(() => {
         getUserList();
-        let interval = setInterval(getUserList, 5000);
-        return () => {
-            clearInterval(interval);
-        }
+        // let interval = setInterval(getUserList, 5000);
+        // return () => {
+        //     clearInterval(interval);
+        // }
     }, [])
 
     useEffect(() => {
