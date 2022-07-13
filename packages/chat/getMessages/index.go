@@ -2,9 +2,9 @@ package main
 
 import (
     "github.com/go-redis/redis"
-    // "crypto/tls"
-    // "encoding/json"
-    // "sort"
+    "crypto/tls"
+    "encoding/json"
+    "sort"
     "fmt"
 )
 
@@ -35,7 +35,6 @@ func Main(args map[string]interface{}) map[string]interface{} {
 
     fmt.Println("pong", pong)
 
-    /*
     // get user list
     len, err := client.LLen(messageKey).Result()
     if err != nil {
@@ -67,7 +66,6 @@ func Main(args map[string]interface{}) map[string]interface{} {
     sort.Slice(newMessageList[:], func(i, j int) bool {
         return newMessageList[i].Timestamp < newMessageList[j].Timestamp
     })
-    */
     
     response["body"] = messageKey
     return response
