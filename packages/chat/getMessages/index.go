@@ -5,6 +5,7 @@ import (
     "crypto/tls"
     "encoding/json"
     "sort"
+    "fmt"
 )
 
 func Main(args map[string]interface{}) map[string]interface{} {
@@ -23,10 +24,12 @@ func Main(args map[string]interface{}) map[string]interface{} {
         DB: 0,
     })
 
-    _, err := client.Ping().Result()
+    pong, err := client.Ping().Result()
     if err != nil {
         panic(err)
     }
+
+    fmt.Println("pong", pong)
 
     // get user list
     len, err := client.LLen(messageKey).Result()
@@ -38,6 +41,8 @@ func Main(args map[string]interface{}) map[string]interface{} {
     if err != nil {
         panic(err)
     }
+
+    fmt.Println("messageList", messageList)
 
     // parse json
     type Message struct {
