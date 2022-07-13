@@ -30,7 +30,7 @@ func Main(args map[string]interface{}) map[string]interface{} {
 
     pong, err := client.Ping().Result()
     if err != nil {
-        panic(err)
+        fmt.Println(err)
     }
 
     fmt.Println("pong", pong)
@@ -38,12 +38,12 @@ func Main(args map[string]interface{}) map[string]interface{} {
     // get user list
     len, err := client.LLen(messageKey).Result()
     if err != nil {
-        panic(err)
+        fmt.Println(err)
     }
 
     messageList, err := client.LRange(messageKey, 0, (len - 1)).Result()
     if err != nil {
-        panic(err)
+        fmt.Println(err)
     }
 
     fmt.Println("messageList", messageList)
