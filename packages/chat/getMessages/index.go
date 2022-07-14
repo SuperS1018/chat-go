@@ -20,9 +20,9 @@ func Main(args map[string]interface{}) map[string]interface{} {
 
     // connection
     client := redis.NewClient(&redis.Options{
-        TLSConfig: &tls.Config{
-            MinVersion: tls.VersionTLS12,
-        },
+        // TLSConfig: &tls.Config{
+        //     MinVersion: tls.VersionTLS12,
+        // },
         Addr: redisURL,
         Password: redisPassword,
         DB: 0,
