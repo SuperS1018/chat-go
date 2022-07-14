@@ -1,6 +1,6 @@
 module github.com/SuperS/chat-go
 
-go 1.15
+go 1.17
 
 require (
 	github.com/go-redis/redis v6.15.9+incompatible
