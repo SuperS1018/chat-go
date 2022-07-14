@@ -5,3 +5,14 @@ packages:
       messageKey: messagelist
       redisURL: ${REDIS_URL}
       redisPassword: ${REDIS_PASSWORD}
+    actions:
+      - name: addMessage
+        runtime: go:default
+      - name: getMessages
+        runtime: go:default
+      - name: createUser
+        runtime: go:default
+      - name: deleteUser
+        runtime: go:default
+      - name: getUserList
+        runtime: go:default
